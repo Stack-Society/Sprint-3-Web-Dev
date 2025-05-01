@@ -1,37 +1,49 @@
 import React, { useState, useEffect } from "react";
 
+// Importe as imagens da pasta 'assets'
+import arrozFeijaoImg from '../assets/arroz-feijao.jpg';
+import CarnegrelhadaImg from '../assets/carne-grelhada.jpg';
+import peixeAssadoImg from '../assets/peixe-assado.jpg';
+import macarraoImg from '../assets/macarrao.jpg';
+import saladaImg from '../assets/salada-frango.jpg';
+
 function Home() {
-  // Cardápios pré-definidos com avaliações e comentários
+  // Cardápios pré-definidos com avaliações, comentários e imagens
   const predefinedMenus = [
     { 
       nome: "Arroz, Feijão e Carne", 
       calorias: 700, 
       estrelas: 4,
-      comentario: "Prato clássico e nutritivo, ideal para o dia a dia." 
+      comentario: "Prato clássico e nutritivo, ideal para o dia a dia.",
+      imagem: arrozFeijaoImg
     },
     { 
       nome: "Frango Grelhado com Legumes", 
       calorias: 550, 
       estrelas: 5,
-      comentario: "Frango leve e saudável, uma opção excelente para quem busca um prato equilibrado." 
+      comentario: "Frango leve e saudável, uma opção excelente para quem busca um prato equilibrado.",
+      imagem: CarnegrelhadaImg
     },
     { 
       nome: "Peixe Assado com Arroz", 
       calorias: 600, 
       estrelas: 3,
-      comentario: "Uma refeição saborosa, mas um pouco mais leve que as demais." 
+      comentario: "Uma refeição saborosa, mas um pouco mais leve que as demais.",
+      imagem: peixeAssadoImg
     },
     { 
       nome: "Macarrão com Molho Bolonhesa", 
       calorias: 800, 
       estrelas: 4,
-      comentario: "Ideal para quem adora uma refeição reconfortante e saborosa." 
+      comentario: "Ideal para quem adora uma refeição reconfortante e saborosa.",
+      imagem: macarraoImg
     },
     { 
       nome: "Salada de Frango com Abacate", 
       calorias: 450, 
       estrelas: 5,
-      comentario: "Uma salada refrescante e leve, perfeita para dias quentes." 
+      comentario: "Uma salada refrescante e leve, perfeita para dias quentes.",
+      imagem: saladaImg
     },
   ];
 
@@ -57,6 +69,7 @@ function Home() {
     const novoItem = {
       nome: newMenu,
       calorias,
+      imagem: "" // Sem imagem ao adicionar um novo cardápio
     };
 
     // usando desestruturação
@@ -94,9 +107,10 @@ function Home() {
           <p>Nenhum cardápio adicionado ainda.</p>
         ) : (
           <div className="row">
-            {menus.map(({ nome, calorias }, index) => (
+            {menus.map(({ nome, calorias, imagem }, index) => (
               <div key={index} className="col-md-4 mb-3">
                 <div className="card shadow-sm h-100">
+                  {imagem && <img src={imagem} alt={nome} className="card-img-top" />}
                   <div className="card-body">
                     <h5 className="card-title">{nome}</h5>
                     <p className="card-text">Valor calórico: {calorias} kcal</p>
@@ -117,9 +131,10 @@ function Home() {
       <section>
         <h2>Pratos Pré-definidos</h2>
         <div className="row">
-          {predefinedMenus.map(({ nome, calorias, estrelas, comentario }, index) => (
+          {predefinedMenus.map(({ nome, calorias, estrelas, comentario, imagem }, index) => (
             <div key={index} className="col-md-4 mb-3">
               <div className="card shadow-sm h-100">
+                <img src={imagem} alt={nome} className="card-img-top" />
                 <div className="card-body">
                   <h5 className="card-title">{nome}</h5>
                   <p className="card-text">Valor calórico: {calorias} kcal</p>
